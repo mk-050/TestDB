@@ -8,13 +8,14 @@ public class TestUserDAO {
 	String name = "";
 	String password = "";
 
-	public void selectAll() {
+	public void selectByPassword(String password) {
 		DBConnector db = new DBConnector();
 		Connection con = db.getConnection();
 		
-		String sql = "select*from test_table";
+		String sql = "select*from test_table where password=?";
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1,password);
 			ResultSet rs=ps.executeQuery();
 			while(rs.next()) {
 				System.out.println(rs.getString("user_name"));
