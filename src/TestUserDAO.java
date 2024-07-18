@@ -7,20 +7,19 @@ public class TestUserDAO {
 	String name = "";
 	String password = "";
 
-	public void updateUserNameByUserName(String oldName, String newName) {
+	public void insert(int user_id,String name, String password) {
 		DBConnector db = new DBConnector();
 		Connection con = db.getConnection();
 
-		String sql = "update test_table set user_name=? where user_name=?";
+		String sql = "insert into test_table values(?,?,?)";
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setString(1, newName);
-			ps.setString(2, oldName);
+			ps.setInt(1, user_id);
+			ps.setString(2, name);
+			ps.setString(3,password)
 			int i = ps.executeUpdate();
 			if (i > 0) {
-				System.out.println(i + "件更新されました");
-			}else {
-				System.out.println("該当するデータはありませんでした");
+				System.out.println(i + "件登録されました");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
