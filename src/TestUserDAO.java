@@ -16,7 +16,7 @@ public class TestUserDAO {
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setInt(1, user_id);
 			ps.setString(2, name);
-			ps.setString(3,password)
+			ps.setString(3,password);
 			int i = ps.executeUpdate();
 			if (i > 0) {
 				System.out.println(i + "件登録されました");
